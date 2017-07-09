@@ -18,9 +18,9 @@ Convert(unsigned int Number)
 	NumberFormat* Result = new NumberFormat();
 	Result->Number = 	Number;
 	Result->Ones = 		Number % 10;
-	Result->Tens = 		Number % 100 			/ 10;
-	Result->Hundreds = 	Number % 1000 			/ 100;
-	Result->Thousands = Number % 1000000 		/ 1000;
+	Result->Tens = 		Number % 100 		/ 10;
+	Result->Hundreds = 	Number % 1000 		/ 100;
+	Result->Thousands = 	Number % 1000000 	/ 1000;
 	Result->Millions = 	Number % 1000000000 	/ 1000000;
 	Result->Billions = 	Number % 1000000000000 	/ 1000000000; 
 	return(Result);
@@ -88,9 +88,9 @@ GetHundreds(int Number, bool first=true)
 
 	if(Number == 0) return(Result);
 	
-	int Ones = Number % 10;
-	int Tens = Number % 100 / 10;
-	int Hundreds = Number / 100;
+	int Ones =	Number % 10;
+	int Tens =	Number % 100 / 10;
+	int Hundreds = 	Number / 100;
 
 	if(Hundreds) Result += GetOnes(Hundreds) + "Hundred ";
 
@@ -144,13 +144,13 @@ main(int argc, char* argv[])
 	else
 	{
 		unsigned int Number = (unsigned int)strtoul(argv[1], 0, 0);
-		if(Number < 0) std::cout << "Too low" << std::endl;					// These checks would be nice, but will never work since strtoul() clamps values outside our range to UINT_MAX
-		else if(Number > UINT_MAX) std::cout << "Too high" << std::endl;	// These checks would be nice, but will never work since strtoul() clamps values outside our range to UINT_MAX 
+		if(Number < 0) std::cout << "Too low" << std::endl;		 // These checks would be nice, but will never work since strtoul() clamps values outside our range to UINT_MAX
+		else if(Number > UINT_MAX) std::cout << "Too high" << std::endl; // These checks would be nice, but will never work since strtoul() clamps values outside our range to UINT_MAX 
 		else
 		{
 			NumberFormat* Test = Convert(Number);
 			Print(Test);
 		}
 	}
-	return 0;
+	return(0);
 }
